@@ -8,7 +8,10 @@ import "google/protobuf/timestamp.proto";
 
 service Service {
 	rpc Echo(EchoRequest) returns (EchoResponse) {
-		option (google.api.http).get = "/echo";
+		option (google.api.http) = {
+			put: "/echo"
+			body: "*"
+		};
 	};
 }
 

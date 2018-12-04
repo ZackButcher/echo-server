@@ -59,6 +59,7 @@ type server struct{
 // Echo replies to a request by sending back exactly the requests data, with the server's time
 func (s server) Echo(ctx context.Context, req *api.EchoRequest) (*api.EchoResponse, error) {
 	now, err := ptypes.TimestampProto(time.Now())
+	log.Printf("handling request at %s", now.String())
 	return &api.EchoResponse{
 		Id:         s.id,
 		Body:       req.Body,

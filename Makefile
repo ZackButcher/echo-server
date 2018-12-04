@@ -17,3 +17,9 @@ docker.run: docker.build
 
 docker.push: docker.build
 	docker push ${HUB}/echo-server:${TAG}
+
+envoyfilter:
+	go run github.com/tetratelabs/istio-tools/grpc-transcoder \
+		--port 80 \
+		--descriptor ./api/echo.proto-descriptor \
+		--service echo-server > ./kubernetes/envoyfilter.yaml
